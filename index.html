@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Tip calculator app</title>
+  </head>
+  <body>
+    <main>
+      <img src="./images/logo.svg" alt="Logo" />
+      <h1 class="sr-only">Tip calculator</h1>
+      <div>
+        <form action="">
+          <div>
+            <label for="bill">Bill</label>
+            <div>
+              <img src="./images/icon-dollar.svg" alt="" />
+              <input type="number" name="bill" id="bill" placeholder="0.00" />
+            </div>
+          </div>
+
+          <div>
+            <p>
+              Select Tip <span class="sr-only">percentage</span>
+              <span aria-hidden="true">%</span>
+            </p>
+            <!-- use buttons? -->
+            <!-- <div>
+              <button>5%</button>
+              <button>10%</button>
+              <button>15%</button>
+              <button>25%</button>
+              <button>50%</button>
+              <input
+                type="number"
+                name="custom"
+                id="custom"
+                placeholder="Custom"
+              />
+            </div> -->
+
+            <!-- use radio inputs?-->
+            <div>
+              <label for="5">
+                5%
+                <input type="radio" name="tip" id="5" value="5" />
+              </label>
+
+              <label for="10">
+                10%
+                <input type="radio" name="tip" id="10" value="10" />
+              </label>
+
+              <label for="15">
+                15%
+                <input type="radio" name="tip" id="15" value="15" />
+              </label>
+
+              <label for="25">
+                25%
+                <input type="radio" name="tip" id="25" value="25" />
+              </label>
+
+              <label for="50">
+                50%
+                <input type="radio" name="tip" id="50" value="50" />
+              </label>
+              <div>
+                <label for="custom">
+                  Custom
+                  <input type="radio" name="tip" id="custom" value="custom" />
+                </label>
+                <input
+                  type="number"
+                  name="custom"
+                  id="custom"
+                  placeholder="Custom"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <label for="numberofpeople">Number of people</label>
+              <p aria-live="polite"></p>
+            </div>
+            <div>
+              <img src="./images/icon-person.svg" alt="" />
+              <input
+                type="number"
+                name="numberofpeople"
+                id="numberofpeople"
+                placeholder="0"
+              />
+            </div>
+          </div>
+        </form>
+
+        <div>
+          <div>
+            <div>
+              <p>
+                Tip Amount <span class="sr-only">per person</span>
+                <span aria-hidden="true">/ person</span>
+              </p>
+              <p aria-live="polite">$0.00</p>
+            </div>
+            <div>
+              <p>
+                Total <span class="sr-only">amount per person</span>
+                <span aria-hidden="true">/ person</span>
+              </p>
+              <p aria-live="polite">$0.00</p>
+            </div>
+          </div>
+          <button>Reset</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p class="">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="https://github.com/repro123/">Bello Ibrahim</a>.
+      </p>
+    </footer>
+  </body>
+</html>
