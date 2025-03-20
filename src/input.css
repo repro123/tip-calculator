@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  /* font family */
+  --font-space-mono: "Space Mono", monospace;
+
+  /* font size */
+  --text-form-input: clamp(1.5rem, 1.429rem + 0.357vw, 1.75rem);
+  --text-paragraph: clamp(1rem, 0.929rem + 0.357vw, 1.25rem);
+  --text-footer: clamp(0.875rem, 0.804rem + 0.357vw, 1.125rem);
+  --text-price: clamp(2rem, 1.929rem + 0.357vw, 2.25rem);
+
+  /* colors */
+  --color-primaryStrongCyan: hsl(172, 67%, 45%);
+  --color-secondaryVeryStrongCyan: hsl(183, 100%, 15%);
+  --color-darkgrayishcyan: hsl(186, 14%, 43%);
+  --color-Grayishcyan: hsl(184, 14%, 56%);
+  --color-Lightgrayishcyan: hsl(185, 41%, 84%);
+  --color-Verylightgrayishcyan: hsl(189, 41%, 97%);
+  --color-primaryWhite: hsl(0, 0%, 100%);
+}

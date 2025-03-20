@@ -3,32 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
-
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/output.css" />
     <title>Frontend Mentor | Tip calculator app</title>
   </head>
-  <body>
-    <main>
+  <body
+    class="antialiased min-h-dvh text-paragraph bg-Lightgrayishcyan flex flex-col items-center justify-center font-space-mono font-bold text-darkgrayishcyan"
+  >
+    <main
+      class="grow m-auto w-full flex flex-col items-center justify-center gap-12 mt-12"
+    >
       <img src="./images/logo.svg" alt="Logo" />
       <h1 class="sr-only">Tip calculator</h1>
-      <div>
-        <form action="">
-          <div>
-            <label for="bill">Bill</label>
-            <div>
+      <div
+        class="bg-primaryWhite rounded-3xl shadow-lg p-8 w-full max-w-xl flex flex-col gap-8 lg:max-w-5xl"
+      >
+        <form action="" class="w-full flex flex-col gap-8">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <label for="bill">Bill</label>
+              <p
+                aria-live="polite"
+                id="billErrorMessage"
+                class="text-red-500 text-sm"
+              ></p>
+            </div>
+            <div
+              class="rounded-lg flex items-center gap-2 p-2 bg-Verylightgrayishcyan focus-within:border-primaryStrongCyan border-transparent border-3"
+            >
               <img src="./images/icon-dollar.svg" alt="" />
-              <input type="number" name="bill" id="bill" placeholder="0.00" />
+              <input
+                type="number"
+                name="bill"
+                id="bill"
+                placeholder="0.00"
+                class="border-0 outline-0 w-full text-form-input text-secondaryVeryStrongCyan text-right p-0 rounded-lg"
+                required
+              />
             </div>
           </div>
 
-          <div>
+          <div class="flex flex-col gap-2">
             <p>
               Select Tip <span class="sr-only">percentage</span>
               <span aria-hidden="true">%</span>
@@ -49,91 +75,189 @@
             </div> -->
 
             <!-- use radio inputs?-->
-            <div>
-              <label for="5">
+            <div class="grid grid-cols-2 gap-4 text-form-input">
+              <label
+                for="5"
+                class="bg-secondaryVeryStrongCyan text-white w-full text-center rounded-lg py-4 cursor-pointer hover:bg-Lightgrayishcyan hover:text-secondaryVeryStrongCyan has-checked:text-secondaryVeryStrongCyan has-checked:bg-primaryStrongCyan has-checked:border-secondaryVeryStrongCyan border-transparent border-3"
+              >
                 5%
-                <input type="radio" name="tip" id="5" value="5" />
+                <input
+                  type="radio"
+                  name="tip"
+                  id="5"
+                  value="5"
+                  class="sr-only"
+                />
               </label>
 
-              <label for="10">
+              <label
+                for="10"
+                class="bg-secondaryVeryStrongCyan text-white w-full text-center rounded-lg py-4 cursor-pointer hover:bg-Lightgrayishcyan hover:text-secondaryVeryStrongCyan has-checked:text-secondaryVeryStrongCyan has-checked:bg-primaryStrongCyan has-checked:border-secondaryVeryStrongCyan border-transparent border-3"
+              >
                 10%
-                <input type="radio" name="tip" id="10" value="10" />
+                <input
+                  type="radio"
+                  name="tip"
+                  id="10"
+                  value="10"
+                  class="sr-only"
+                />
               </label>
 
-              <label for="15">
+              <label
+                for="15"
+                class="bg-secondaryVeryStrongCyan text-white w-full text-center rounded-lg py-4 cursor-pointer hover:bg-Lightgrayishcyan hover:text-secondaryVeryStrongCyan has-checked:text-secondaryVeryStrongCyan has-checked:bg-primaryStrongCyan has-checked:border-secondaryVeryStrongCyan border-transparent border-3"
+              >
                 15%
-                <input type="radio" name="tip" id="15" value="15" />
+                <input
+                  type="radio"
+                  name="tip"
+                  id="15"
+                  value="15"
+                  class="sr-only"
+                />
               </label>
 
-              <label for="25">
+              <label
+                for="25"
+                class="bg-secondaryVeryStrongCyan text-white w-full text-center rounded-lg py-4 cursor-pointer hover:bg-Lightgrayishcyan hover:text-secondaryVeryStrongCyan has-checked:text-secondaryVeryStrongCyan has-checked:bg-primaryStrongCyan has-checked:border-secondaryVeryStrongCyan border-transparent border-3"
+              >
                 25%
-                <input type="radio" name="tip" id="25" value="25" />
+                <input
+                  type="radio"
+                  name="tip"
+                  id="25"
+                  value="25"
+                  class="sr-only"
+                />
               </label>
 
-              <label for="50">
+              <label
+                for="50"
+                class="bg-secondaryVeryStrongCyan text-white w-full text-center rounded-lg py-4 cursor-pointer hover:bg-Lightgrayishcyan hover:text-secondaryVeryStrongCyan has-checked:text-secondaryVeryStrongCyan has-checked:bg-primaryStrongCyan has-checked:border-secondaryVeryStrongCyan border-transparent border-3"
+              >
                 50%
-                <input type="radio" name="tip" id="50" value="50" />
+                <input
+                  type="radio"
+                  name="tip"
+                  id="50"
+                  value="50"
+                  class="sr-only"
+                />
               </label>
-              <div>
-                <label for="custom">
+
+              <div
+                class="bg-Verylightgrayishcyan w-full text-center rounded-lg py-4 cursor-pointer focus-within:border-primaryStrongCyan border-transparent border-3 has-checked:border-primaryStrongCyan"
+              >
+                <label
+                  for="customRadio"
+                  class="text-darkgrayishcyan peer has-checked:hidden"
+                >
                   Custom
-                  <input type="radio" name="tip" id="custom" value="custom" />
+                  <input
+                    type="radio"
+                    name="tip"
+                    id="customRadio"
+                    value="custom"
+                    class="sr-only"
+                  />
                 </label>
+                <label for="customNumberInput" class="sr-only"
+                  >Input your desired percentage</label
+                >
                 <input
                   type="number"
                   name="custom"
-                  id="custom"
-                  placeholder="Custom"
+                  placeholder="0%"
+                  id="customNumberInput"
+                  class="w-full p-0 text-right h-full border-0 outline-0 hidden peer-has-checked:block text-secondaryVeryStrongCyan"
                 />
               </div>
             </div>
           </div>
 
-          <div>
-            <div>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between">
               <label for="numberofpeople">Number of people</label>
-              <p aria-live="polite"></p>
+              <p
+                aria-live="polite"
+                class="text-red-500 text-sm"
+                id="peopleErrorMessage"
+              ></p>
             </div>
-            <div>
+            <div
+              class="rounded-lg flex items-center gap-2 p-2 bg-Verylightgrayishcyan focus-within:border-primaryStrongCyan border-transparent border-3"
+            >
               <img src="./images/icon-person.svg" alt="" />
               <input
                 type="number"
                 name="numberofpeople"
                 id="numberofpeople"
                 placeholder="0"
+                class="border-0 outline-0 w-full text-form-input text-secondaryVeryStrongCyan text-right p-0 rounded-lg"
+                required
               />
             </div>
           </div>
         </form>
 
-        <div>
-          <div>
-            <div>
-              <p>
+        <div
+          class="bg-secondaryVeryStrongCyan rounded-lg py-8 px-6 md:px-8 flex flex-col gap-8"
+        >
+          <div class="flex flex-col gap-6">
+            <div class="flex justify-between items-center">
+              <p class="text-primaryWhite">
                 Tip Amount <span class="sr-only">per person</span>
-                <span aria-hidden="true">/ person</span>
+                <span
+                  aria-hidden="true"
+                  class="text-footer block text-Grayishcyan"
+                  >/ person</span
+                >
               </p>
-              <p aria-live="polite">$0.00</p>
+              <p aria-live="polite" class="text-primaryStrongCyan text-price">
+                $<span id="tipPerPerson">0.00</span>
+              </p>
             </div>
-            <div>
-              <p>
+
+            <div class="flex justify-between items-center">
+              <p class="text-primaryWhite">
                 Total <span class="sr-only">amount per person</span>
-                <span aria-hidden="true">/ person</span>
+                <span
+                  aria-hidden="true"
+                  class="text-footer block text-Grayishcyan"
+                  >/ person</span
+                >
               </p>
-              <p aria-live="polite">$0.00</p>
+              <p aria-live="polite" class="text-primaryStrongCyan text-price">
+                $<span id="totalPerPerson">0.00</span>
+              </p>
             </div>
           </div>
-          <button>Reset</button>
+          <button
+            class="mt-auto inline-block w-full py-2 text-secondaryVeryStrongCyan bg-primaryStrongCyan uppercase tracking-wider cursor-pointer rounded-lg hover:bg-Verylightgrayishcyan focus:border-Lightgrayishcyan border-transparent border-3 focus:outline-none"
+            id="reset"
+          >
+            Reset
+          </button>
         </div>
       </div>
     </main>
 
-    <footer>
+    <footer class="text-footer text-center mt-8 px-4 pb-4">
       <p class="">
         Challenge by
-        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        <a
+          href="https://www.frontendmentor.io?ref=challenge"
+          target="_blank"
+          class="text-secondaryVeryStrongCyan underline"
           >Frontend Mentor</a
-        >. Coded by <a href="https://github.com/repro123/">Bello Ibrahim</a>.
+        >. Coded by
+        <a
+          href="https://github.com/repro123/"
+          class="text-secondaryVeryStrongCyan underline"
+          target="_blank"
+          >Bello Ibrahim</a
+        >.
       </p>
     </footer>
   </body>
