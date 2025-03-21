@@ -27,9 +27,9 @@
       <img src="./images/logo.svg" alt="Logo" />
       <h1 class="sr-only">Tip calculator</h1>
       <div
-        class="bg-primaryWhite rounded-3xl shadow-lg p-8 w-full max-w-xl flex flex-col gap-8 lg:max-w-5xl"
+        class="bg-primaryWhite rounded-3xl shadow-lg p-8 w-full max-w-xl flex flex-col gap-8 lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-12"
       >
-        <form action="" class="w-full flex flex-col gap-8">
+        <form action="" class="w-full flex flex-col gap-8" id="myForm">
           <div class="flex flex-col gap-2">
             <div class="flex items-center justify-between">
               <label for="bill">Bill</label>
@@ -45,6 +45,7 @@
               <img src="./images/icon-dollar.svg" alt="" />
               <input
                 type="number"
+                step="0.01"
                 name="bill"
                 id="bill"
                 placeholder="0.00"
@@ -75,7 +76,7 @@
             </div> -->
 
             <!-- use radio inputs?-->
-            <div class="grid grid-cols-2 gap-4 text-form-input">
+            <div class="grid grid-cols-2 gap-4 text-form-input lg:grid-cols-3">
               <label
                 for="5"
                 class="bg-secondaryVeryStrongCyan text-white w-full text-center rounded-lg py-4 cursor-pointer hover:bg-Lightgrayishcyan hover:text-secondaryVeryStrongCyan has-checked:text-secondaryVeryStrongCyan has-checked:bg-primaryStrongCyan has-checked:border-secondaryVeryStrongCyan border-transparent border-3"
@@ -158,7 +159,7 @@
                     type="radio"
                     name="tip"
                     id="customRadio"
-                    value="custom"
+                    value=""
                     class="sr-only"
                   />
                 </label>
@@ -168,9 +169,9 @@
                 <input
                   type="number"
                   name="custom"
-                  placeholder="0%"
+                  placeholder="0"
                   id="customNumberInput"
-                  class="w-full p-0 text-right h-full border-0 outline-0 hidden peer-has-checked:block text-secondaryVeryStrongCyan"
+                  class="w-full p-0 text-right h-full border-0 outline-0 hidden peer-has-checked:block text-secondaryVeryStrongCyan px-2"
                 />
               </div>
             </div>
@@ -192,8 +193,10 @@
               <input
                 type="number"
                 name="numberofpeople"
+                inputmode="numeric"
                 id="numberofpeople"
                 placeholder="0"
+                min="1"
                 class="border-0 outline-0 w-full text-form-input text-secondaryVeryStrongCyan text-right p-0 rounded-lg"
                 required
               />
@@ -204,7 +207,7 @@
         <div
           class="bg-secondaryVeryStrongCyan rounded-lg py-8 px-6 md:px-8 flex flex-col gap-8"
         >
-          <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-6 lg:gap-8">
             <div class="flex justify-between items-center">
               <p class="text-primaryWhite">
                 Tip Amount <span class="sr-only">per person</span>
@@ -260,5 +263,7 @@
         >.
       </p>
     </footer>
+
+    <script src="./src/script.js"></script>
   </body>
 </html>
