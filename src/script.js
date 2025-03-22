@@ -9,9 +9,7 @@ const customRadio = document.getElementById("customRadio");
 const customNumberInput = document.getElementById("customNumberInput");
 const billErrorMessage = document.getElementById("billErrorMessage");
 const peopleErrorMessage = document.getElementById("peopleErrorMessage");
-const bill = form.bill;
-const numberofpeople = form.numberofpeople;
-const tipPercentage = form.tip;
+
 
 tipPerPerson.textContent = "0.00";
 totalPerPerson.textContent = "0.00";
@@ -67,3 +65,98 @@ resetButton.addEventListener("click", () => {
   totalPerPerson.textContent = "0.00";
 });
 */
+
+"use strict";
+
+const form = document.getElementById("myForm");
+
+// select all input elements
+const billInput = document.getElementById("bill");
+const tipRadioInputs = document.getElementsByName("tip");
+const customRadioInput = document.getElementById("customRadio");
+const customNumberInput = document.getElementById("customNumberInput");
+const numberOfPeopleInput = document.getElementById("numberofpeople");
+
+// select error messages
+const billErrorMessage = document.getElementById("billErrorMessage");
+const customInputErrorMessage = document.getElementById(
+  "customInputErrorMessage"
+);
+const peopleErrorMessage = document.getElementById("peopleErrorMessage");
+
+// select the divs of bill, customDiv and people inputs
+const billDiv = document.getElementById("billDiv");
+const peopleDiv = document.getElementById("peopleDiv");
+const customTipDiv = document.getElementById("customTipDiv");
+
+// select tip per person and total per person spans
+const tipPerPersonSpan = document.getElementById("tipPerPerson");
+const totalPerPersonSpan = document.getElementById("totalPerPerson");
+
+// select error button
+const resetButton = document.getElementById("reset");
+
+// function to validate inputes
+function validateInputs() {
+  let isValid = true;
+
+  // validate bill input
+  if (!billInput.value) {
+    handleError(billDiv, billErrorMessage, "Select a number");
+    isValid = false;
+  } else if (Number(billInput.value) < 0) {
+    handleError(billDiv, billErrorMessage, "Can't be negative");
+    isValid = false;
+  } else if (Number(billInput.value) === 0) {
+    handleError(billDiv, billErrorMessage, "Can't be zero");
+    isValid = false;
+  } else {
+    billErrorMessage.textContent = "";
+    noErrorBorder(billDiv);
+  }
+
+  //   validate custom input
+  if (Number(customNumberInput.value) < 0) {
+    customInputErrorMessage.textContent = "Can't be negative";
+    customTipDiv.classList.add("border-red-500");
+    isValid = false;
+  } else {
+    customInputErrorMessage.textContent = "";
+    customTipDiv.classList.remove("border-red-500");
+  }
+
+  //   validate people input
+  if (!numberOfPeopleInput.value) {
+    handleError(peopleDiv, peopleErrorMessage, "Select a number");
+    isValid = false;
+  } else if (Number(numberOfPeopleInput.value) < 0) {
+    handleError(peopleDiv, peopleErrorMessage, "Can't be negative");
+    isValid = false;
+  } else if (Number(numberOfPeopleInput.value) === 0) {
+    handleError(peopleDiv, peopleErrorMessage, "Can't be zero");
+    isValid = false;
+  } else {
+    peopleErrorMessage.textContent = "";
+    noErrorBorder(peopleDiv);
+  }
+
+  return isValid;
+}
+
+function handleError(element, errorMessageElement, message) {
+  element.classList.remove("border-transparent");
+  element.classList.remove("focus-within:border-primaryStrongCyan");
+  element.classList.add("border-red-500");
+
+  errorMessageElement.textContent = message;
+}
+
+function noErrorBorder(element) {
+  element.classList.add("border-transparent");
+  element.classList.add("focus-within:border-primaryStrongCyan");
+  element.classList.remove("border-red-500");
+}
+
+billInput.addEventListener("input", validateInputs);
+customNumberInput.addEventListener("input", validateInputs);
+numberOfPeopleInput.addEventListener("input", validateInputs);
