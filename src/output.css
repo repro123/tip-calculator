@@ -294,6 +294,9 @@
     border-style: var(--tw-border-style);
     border-width: 3px;
   }
+  .border-primaryStrongCyan {
+    border-color: var(--color-primaryStrongCyan);
+  }
   .border-red-500 {
     border-color: var(--color-red-500);
   }

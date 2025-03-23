@@ -1,71 +1,3 @@
-/*
-"use strict";
-
-const resetButton = document.getElementById("reset");
-const form = document.getElementById("myForm");
-const tipPerPerson = document.getElementById("tipPerPerson");
-const totalPerPerson = document.getElementById("totalPerPerson");
-const customRadio = document.getElementById("customRadio");
-const customNumberInput = document.getElementById("customNumberInput");
-const billErrorMessage = document.getElementById("billErrorMessage");
-const peopleErrorMessage = document.getElementById("peopleErrorMessage");
-
-
-tipPerPerson.textContent = "0.00";
-totalPerPerson.textContent = "0.00";
-
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  let billValue = Number(bill.value);
-  let peopleValue = Number(numberofpeople.value);
-  let tipValue = Number(tipPercentage.value);
-  console.log(billValue, peopleValue, tipValue);
-
-  if (isNaN(billValue)) {
-    billErrorMessage.textContent = "select a valid number";
-  } else if (billValue < 0) {
-    billErrorMessage.textContent = "Can't be negative";
-  } else if (billValue === 0) {
-    billErrorMessage.textContent = "Can't be zero";
-  }
-
-  if (isNaN(peopleValue)) {
-    peopleErrorMessage.textContent = "select a valid number";
-  } else if (peopleValue < 0) {
-    peopleErrorMessage.textContent = "Can't be negative";
-  } else if (peopleValue === 0) {
-    peopleErrorMessage.textContent = "Can't be zero";
-  }
-
-  if (
-    !isNaN(billValue) &&
-    billValue > 0 &&
-    !isNaN(peopleValue) &&
-    peopleValue > 0
-  ) {
-    billErrorMessage.textContent = "";
-    peopleErrorMessage.textContent = "";
-    let CalculatedTipPerPerson = (billValue * (tipValue / 100)) / peopleValue;
-    let CalculatedTotalPerPerson = billValue / peopleValue + tipPerPerson;
-    console.log(tipPerPerson, totalPerPerson);
-    CalculatedTipPerPerson.textContent = tipPerPerson.toFixed(2);
-    CalculatedTotalPerPerson.textContent = totalPerPerson.toFixed(2);
-  }
-});
-
-// focus the customNumberInput field when the customRadio is selected/checked so users can type in it directly
-customRadio.addEventListener("change", () => {
-  customNumberInput.focus();
-});
-
-// reset button should reset the form and the tipPerPerson and totalPerPerson values
-resetButton.addEventListener("click", () => {
-  form.reset();
-  tipPerPerson.textContent = "0.00";
-  totalPerPerson.textContent = "0.00";
-});
-*/
-
 "use strict";
 
 const form = document.getElementById("myForm");
@@ -96,6 +28,11 @@ const totalPerPersonSpan = document.getElementById("totalPerPerson");
 // select error button
 const resetButton = document.getElementById("reset");
 
+// focus on custom input when custom radio is checked
+customRadio.addEventListener("change", () => {
+  customNumberInput.focus();
+});
+
 // function to validate inputes
 function validateInputs() {
   let isValid = true;
@@ -111,18 +48,15 @@ function validateInputs() {
     handleError(billDiv, billErrorMessage, "Can't be zero");
     isValid = false;
   } else {
-    billErrorMessage.textContent = "";
-    noErrorBorder(billDiv);
+    errorCleared(billDiv, billErrorMessage, "");
   }
 
   //   validate custom input
   if (Number(customNumberInput.value) < 0) {
-    customInputErrorMessage.textContent = "Can't be negative";
-    customTipDiv.classList.add("border-red-500");
+    handleError(customTipDiv, customInputErrorMessage, "Can't be negative");
     isValid = false;
   } else {
-    customInputErrorMessage.textContent = "";
-    customTipDiv.classList.remove("border-red-500");
+    errorCleared(customTipDiv, customInputErrorMessage, "");
   }
 
   //   validate people input
@@ -136,13 +70,13 @@ function validateInputs() {
     handleError(peopleDiv, peopleErrorMessage, "Can't be zero");
     isValid = false;
   } else {
-    peopleErrorMessage.textContent = "";
-    noErrorBorder(peopleDiv);
+    errorCleared(peopleDiv, peopleErrorMessage, "");
   }
 
   return isValid;
 }
 
+// function to handle error
 function handleError(element, errorMessageElement, message) {
   element.classList.remove("border-transparent");
   element.classList.remove("focus-within:border-primaryStrongCyan");
@@ -151,12 +85,63 @@ function handleError(element, errorMessageElement, message) {
   errorMessageElement.textContent = message;
 }
 
-function noErrorBorder(element) {
+// function to clear error
+function errorCleared(element, errorMessageElement, message) {
   element.classList.add("border-transparent");
   element.classList.add("focus-within:border-primaryStrongCyan");
   element.classList.remove("border-red-500");
+
+  errorMessageElement.textContent = message;
+}
+// console.log(!validateInputs());
+
+// function to calculate tip
+function calcuateTip() {
+  if (validateInputs()) {
+    const billValue = Number(billInput.value);
+
+    let tipValue;
+    //    get the value of the checked radio input
+    for (let tipRadioInput of tipRadioInputs) {
+      if (tipRadioInput.checked) {
+        if (tipRadioInput.id === "customRadio") {
+          tipValue = Number(customNumberInput.value);
+        } else {
+          tipValue = Number(tipRadioInput.value);
+          customNumberInput.value = "";
+          customTipDiv.classList.remove(
+            "focus-within:border-primaryStrongCyan"
+          );
+        }
+      }
+    }
+
+    const numberOfPeople = Number(numberOfPeopleInput.value);
+
+    // calculate tip per person and total per person
+    const totalTip = billValue * (tipValue / 100);
+    const tipPerPerson = totalTip / numberOfPeople;
+    const totalPerPerson = (billValue + totalTip) / numberOfPeople;
+
+    // display the result
+    tipPerPersonSpan.textContent = tipPerPerson.toFixed(2);
+    totalPerPersonSpan.textContent = totalPerPerson.toFixed(2);
+  }
+
+  return;
 }
 
-billInput.addEventListener("input", validateInputs);
-customNumberInput.addEventListener("input", validateInputs);
-numberOfPeopleInput.addEventListener("input", validateInputs);
+// add event listeners
+billInput.addEventListener("input", calcuateTip);
+customNumberInput.addEventListener("input", calcuateTip);
+numberOfPeopleInput.addEventListener("input", calcuateTip);
+
+// reset button
+resetButton.addEventListener("click", () => {
+  form.reset();
+  tipPerPersonSpan.textContent = "0.00";
+  totalPerPersonSpan.textContent = "0.00";
+  errorCleared(billDiv, billErrorMessage, "");
+  errorCleared(customTipDiv, customInputErrorMessage, "");
+  errorCleared(peopleDiv, peopleErrorMessage, "");
+});
