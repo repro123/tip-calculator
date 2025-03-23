@@ -109,9 +109,7 @@ function calcuateTip() {
         } else {
           tipValue = Number(tipRadioInput.value);
           customNumberInput.value = "";
-          customTipDiv.classList.remove(
-            "focus-within:border-primaryStrongCyan"
-          );
+          customTipDiv.classList.remove("border-red-500");
         }
       }
     }
